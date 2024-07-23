@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ajout des Tickets</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            text-decoration: underline;
+            margin: 50px;
+        }
+        form {
+            align-items: center;
+            height: 500px;
+            width: 600px;
+            margin: auto;
+            margin-top: 50px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .boc {
+            margin: 5px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-size: 20px;
+        }
+        select, textarea, input[type="submit"] {
+            width: 97%;
+            padding: 8px;
+            margin-top: 5px;    
+        }
+        input[type="submit"] {
+            font-size: 17px;
+        }
+        header {
+            display: flex;
+            align-items: center;
+            padding: 0px 20px 0px 0px;
+            background-color: rgb(46, 46, 175);
+            height: 100px; /* Adjust the height as needed */
+        }
+        .logo {
+            flex: 0 0 auto;
+            height: 100%;
+            margin: 0px;
+        }
+        .logo img {
+            height: 100px;
+            width: 400px;;
+            object-fit: cover;
+        }
+        nav {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        nav ul li {
+            margin: 0 15px;
+            position: relative;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: rgb(46, 46, 175);
+            color: white;
+        }
+        nav ul li:hover > .submenu {
+            display: block;
+        }
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: rgb(46, 46, 175);
+            padding: 10px 0;
+            list-style: none;
+        }
+        .submenu li {
+            margin: 0;
+        }
+        .submenu li a {
+            color: #333;
+            padding: 10px 20px;
+            display: block;
+            white-space: nowrap;
+            color: white;
+        }
+        .submenu li a:hover {
+            background-color: rgb(69, 69, 206);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="magh.png" alt="Maghrebia Logo" >
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">MENU</a></li>
+                <li>
+                    <a href="#">ACCEUIL</a>
+                    <ul class="submenu">
+                        <li><a href="#">GESTION DES TICKETS </a></li>
+                        <li><a href="newhtml.html">AJOUT TICKETS</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">REJOINGER-NOUS</a></li>
+                <li><a href="#">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
+    <form id="ticketForm" action="ticket" method="post">
+        <h1>Ajout des Tickets</h1>
+        
+        <label for="branche" class="boc">Branche :<samp style="color: red;">*</samp></label>
+        <select id="branche" name="branche" class="boc">
+            <option value="19">19</option>
+            <option value="21">21</option>
+            <option value="26">26</option>
+            <option value="27">27</option>
+            <option value="28">28-24</option>
+            <option value="30">30</option>
+            <option value="42">42</option>
+            <option value="45">45</option>
+            <option value="46">46</option>
+            <option value="67">67</option>
+            <option value="77">77</option>
+            <option value="91">91,93,94</option>
+        </select>
+        <br>
+        <label for="produit" class="boc">Produit :<samp style="color: red;">*</samp></label>
+        <select id="produit" name="produit" class="boc">
+        </select>
+        <br>
+        <label for="description" class="boc">Description :</label>
+        <textarea id="description" name="description" rows="3" class="boc"></textarea>
+        <br><br>
+        <input type="submit" name="Envoyer Ticket" value="Envoyer Ticket" class="boc" id="bottom">
+        <br><br><br>
+    </form>
+    <br><br><br><br><br><br><br><br>
+
+    <script>
+        const produitOptions = {
+            19: ["Assurance Voyage"],
+            21: ["Assurance Irendie risque simple"],
+            26: ["Assurance risque industrial"],
+            27: ["Assurance Habitation"],
+            28: ["Assurance Multirisque professionnel"],
+            30: ["Assurance Automobile"],
+            42: ["Assurance Individuelle Accident"],
+            45: ["Assurance Individuelle Accident Auto"],
+            46: ["Assurance Siolauce"],
+            67: ["Assurance Chamel"],
+            77: ["Assurance de Chanties"],
+            91: ["Assurance Maritine"]
+        };
+
+        document.getElementById('branche').addEventListener('change', function() {
+            const branche = this.value;
+            const produitSelect = document.getElementById('produit');
+            produitSelect.innerHTML = '';
+            produitOptions[branche].forEach(function(option) {
+                const opt = document.createElement('option');
+                opt.value = option;
+                opt.innerHTML = option;
+                produitSelect.appendChild(opt);
+            });
+        });
+    </script>
+</body>
+</html>
